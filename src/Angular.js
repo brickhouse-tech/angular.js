@@ -333,6 +333,12 @@ function baseExtend(dst, objs, deep) {
       var key = keys[j];
       var src = obj[key];
 
+      // Security fix: Block prototype pollution via __proto__, constructor, and prototype
+      // (CVE-2020-7676)
+      if (key === '__proto__' || key === 'constructor' || key === 'prototype') {
+        continue;
+      }
+
       if (deep && isObject(src)) {
         if (isDate(src)) {
           dst[key] = new Date(src.valueOf());
@@ -343,10 +349,8 @@ function baseExtend(dst, objs, deep) {
         } else if (isElement(src)) {
           dst[key] = src.clone();
         } else {
-          if (key !== '__proto__') {
-            if (!isObject(dst[key])) dst[key] = isArray(src) ? [] : {};
-            baseExtend(dst[key], [src], true);
-          }
+          if (!isObject(dst[key])) dst[key] = isArray(src) ? [] : {};
+          baseExtend(dst[key], [src], true);
         }
       } else {
         dst[key] = src;
@@ -709,7 +713,11 @@ function isPromiseLike(obj) {
 }
 
 
-var TYPED_ARRAY_REGEXP = /^\[object (?:Uint8|Uint8Clamped|Uint16|Uint32|Int8|Int16|Int32|Float32|Float64)Array]$/;
+// Security fix: Reorder alternations so longer prefixes come first to prevent
+// backtracking (CVE-2022-25844 / SNYK-JS-ANGULAR-3373044, CVSSv3 7.5 HIGH)
+// Original: /^\[object (?:Uint8|Uint8Clamped|Uint16|...)Array]$/ — Uint8 before Uint8Clamped
+// causes the engine to backtrack when matching "Uint8Clamped".
+var TYPED_ARRAY_REGEXP = /^\[object (?:Uint8Clamped|Uint8|Uint16|Uint32|Int8|Int16|Int32|Float32|Float64)Array]$/;
 function isTypedArray(value) {
   return value && isNumber(value.length) && TYPED_ARRAY_REGEXP.test(toString.call(value));
 }

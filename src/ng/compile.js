@@ -2096,34 +2096,36 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
 
       var result = '';
 
-      // first check if there are spaces because it's not the same pattern
+      // Security fix: Replace regex-based srcset splitting to prevent ReDoS
+      // (SNYK-JS-ANGULAR-6091113, CVSSv3 7.5 HIGH)
+      // The original regex /(\s+\d+x\s*,|\s+\d+w\s*,|\s+,|,\s+)/ is vulnerable to
+      // super-linear backtracking when given long strings of whitespace.
+      // Fix: Split on commas only, then parse each entry for URI + descriptor.
       var trimmedSrcset = trim(value);
-      //                (   999x   ,|   999w   ,|   ,|,   )
-      var srcPattern = /(\s+\d+x\s*,|\s+\d+w\s*,|\s+,|,\s+)/;
-      var pattern = /\s/.test(trimmedSrcset) ? srcPattern : /(,)/;
+      var entries = trimmedSrcset.split(',');
 
-      // split srcset into tuple of uri and descriptor except for the last item
-      var rawUris = trimmedSrcset.split(pattern);
+      for (var i = 0; i < entries.length; i++) {
+        var entry = trim(entries[i]);
+        if (!entry) continue;
 
-      // for each tuples
-      var nbrUrisWith2parts = Math.floor(rawUris.length / 2);
-      for (var i = 0; i < nbrUrisWith2parts; i++) {
-        var innerIdx = i * 2;
-        // sanitize the uri
-        result += $sce.getTrustedMediaUrl(trim(rawUris[innerIdx]));
-        // add the descriptor
-        result += ' ' + trim(rawUris[innerIdx + 1]);
-      }
+        // Split entry into URI and optional descriptor (e.g., "100w" or "2x")
+        // The descriptor is always the last whitespace-separated token if it matches \d+[xw]
+        var parts = entry.split(/\s+/);
+        var uri, descriptor;
 
-      // split the last item into uri and descriptor
-      var lastTuple = trim(rawUris[i * 2]).split(/\s/);
+        if (parts.length > 1 && /^\d+[xw]$/.test(parts[parts.length - 1])) {
+          descriptor = parts.pop();
+          uri = parts.join(' ');
+        } else {
+          uri = entry;
+          descriptor = null;
+        }
 
-      // sanitize the last uri
-      result += $sce.getTrustedMediaUrl(trim(lastTuple[0]));
-
-      // and add the last descriptor if any
-      if (lastTuple.length === 2) {
-        result += (' ' + trim(lastTuple[1]));
+        if (result) result += ', ';
+        result += $sce.getTrustedMediaUrl(trim(uri));
+        if (descriptor) {
+          result += ' ' + descriptor;
+        }
       }
       return result;
     }
@@ -2264,8 +2266,9 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
 
         nodeName = nodeName_(this.$$element);
 
-        // Sanitize img[srcset] values.
-        if (nodeName === 'img' && key === 'srcset') {
+        // Sanitize img[srcset] and source[srcset] values.
+        // Security fix: Also sanitize source[srcset] (SNYK-JS-ANGULAR-7924842)
+        if ((nodeName === 'img' || nodeName === 'source') && key === 'srcset') {
           this[key] = value = sanitizeSrcset(value, '$set(\'srcset\', value)');
         }
 
@@ -3822,7 +3825,10 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
           return $sce.RESOURCE_URL;
         }
         return $sce.MEDIA_URL;
-      } else if (attrNormalizedName === 'xlinkHref') {
+      } else if (attrNormalizedName === 'xlinkHref' ||
+          // Security fix: SVG <image> elements can use `href` (without xlink: prefix) to load
+          // external resources. Sanitize href on SVG image elements. (SNYK-JS-ANGULAR-9919773)
+          (nodeName === 'image' && attrNormalizedName === 'href')) {
         // Some xlink:href are okay, most aren't
         if (nodeName === 'image') return $sce.MEDIA_URL;
         if (nodeName === 'a') return $sce.URL;
