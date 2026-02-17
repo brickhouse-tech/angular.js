@@ -23,33 +23,11 @@ if (!semver.satisfies(process.version, pkg.engines.node)) {
                'Please use a version that satisfies ' + pkg.engines.node);
 }
 
-// Yarn version checks
-var expectedYarnVersion = pkg.engines.yarn;
-var currentYarnVersion = exec('yarn --version', {silent: true}).stdout.trim();
-if (!semver.satisfies(currentYarnVersion, expectedYarnVersion)) {
-  reportOrFail('Invalid yarn version (' + currentYarnVersion + '). ' +
-               'Please use a version that satisfies ' + expectedYarnVersion);
-}
-
-// Grunt CLI version checks
-var expectedGruntVersion = pkg.engines['grunt-cli'];
-var currentGruntVersions = exec('grunt --version', {silent: true}).stdout;
-var match = /^grunt-cli v(.+)$/m.exec(currentGruntVersions);
-if (!match) {
-  reportOrFail('Unable to compute the current grunt-cli version. We found:\n' +
-               currentGruntVersions);
-} else {
-  if (!semver.satisfies(match[1], expectedGruntVersion)) {
-  reportOrFail('Invalid grunt-cli version (' + match[1] + '). ' +
-               'Please use a version that satisfies ' + expectedGruntVersion);
-  }
-}
-
 // Ensure Node.js dependencies have been installed
 if (!process.env.CI) {
-  var yarnOutput = exec('yarn install');
-  if (yarnOutput.code !== 0) {
-    throw new Error('Yarn install failed: ' + yarnOutput.stderr);
+  var npmOutput = exec('npm install');
+  if (npmOutput.code !== 0) {
+    throw new Error('npm install failed: ' + npmOutput.stderr);
   }
 }
 
@@ -425,7 +403,7 @@ module.exports = function(grunt) {
 
     shell: {
       'install-node-dependencies': {
-        command: 'yarn'
+        command: 'npm install'
       },
       'promises-aplus-tests': {
         options: {
