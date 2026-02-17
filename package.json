@@ -10,11 +10,22 @@
     "url": "https://github.com/brickhouse-tech/angular.js.git"
   },
   "engines": {
-    "node": ">=12.14.1",
-    "yarn": ">=1.21.1",
-    "grunt-cli": "^1.2.0"
+    "node": ">=12.14.1"
   },
+  "main": "index.js",
+  "files": [
+    "angular.js",
+    "angular.min.js",
+    "angular.min.js.map",
+    "angular.min.js.gzip",
+    "angular-csp.css",
+    "index.js",
+    "LICENSE.md",
+    "README.md"
+  ],
   "scripts": {
+    "build": "yarn install --frozen-lockfile --non-interactive && yarn grunt package && cp build/angular.js build/angular.min.js build/angular.min.js.map . 2>/dev/null || true",
+    "prepublishOnly": "echo 'Run npm run build first if dist files are missing'",
     "commit": "git-cz",
     "test-i18n": "jasmine-node i18n/spec",
     "test-i18n-ucd": "jasmine-node i18n/ucd/spec"
