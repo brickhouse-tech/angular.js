@@ -28,7 +28,6 @@
     "prepublishOnly": "echo 'Run npm run build first if dist files are missing'",
     "lint": "npx grunt eslint",
     "test": "npx grunt test:promises-aplus",
-    "commit": "git-cz",
     "test-i18n": "jasmine-node i18n/spec",
     "test-i18n-ucd": "jasmine-node i18n/ucd/spec"
   },
@@ -37,13 +36,8 @@
     "benchmark": "1.x.x",
     "bootstrap": "3.1.1",
     "canonical-path": "0.0.2",
-    "changez": "^2.1.1",
-    "changez-angular": "^2.1.2",
     "cheerio": "^0.17.0",
-    "commitizen": "^4.2.4",
-    "commitplease": "^2.7.10",
     "cross-spawn": "^4.0.0",
-    "cz-conventional-changelog": "1.1.4",
     "dgeni": "^0.4.9",
     "dgeni-packages": "^0.26.5",
     "eslint-plugin-promise": "^3.6.0",
@@ -108,14 +102,5 @@
   "overrides": {
     "natives": "1.1.6",
     "graceful-fs": "^4.2.3"
-  },
-  "commitplease": {
-    "style": "angular",
-    "nohook": true
-  },
-  "config": {
-    "commitizen": {
-      "path": "node_modules/cz-conventional-changelog"
-    }
   }
 }
