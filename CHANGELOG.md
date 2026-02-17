@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.8.4-pre.1](https://github.com/brickhouse-tech/angular.js/compare/v1.8.4-pre.0...v1.8.4-pre.1) (2026-02-17)
+
+
+### Bug Fixes
+
+* add tag: pre to publish workflow for prerelease npm publish ([c0ad133](https://github.com/brickhouse-tech/angular.js/commit/c0ad133f8418b5bd2aeb694ef710f0eb0a96a4da))
+
 ## [1.8.4-pre.0](https://github.com/brickhouse-tech/angular.js/compare/v1.8.3...v1.8.4-pre.0) (2026-02-17)
 
 
