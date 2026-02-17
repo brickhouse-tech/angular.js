@@ -1,8 +1,33 @@
-**AngularJS support has officially ended as of January 2022.
-[See what ending support means](https://docs.angularjs.org/misc/version-support-status)
-and [read the end of life announcement](https://goo.gle/angularjs-end-of-life).**
+**This is the changelog for `@brickhouse-tech/angular-lts`, a community-maintained fork
+of AngularJS providing security patches after the official End-of-Life (January 2022).**
 
-**Visit [angular.io](https://angular.io) for the actively supported Angular.**
+---
+
+<a name="1.8.4-0"></a>
+# 1.8.4-0 (2026-02-17) — LTS Security Release
+
+Published as [`@brickhouse-tech/angular-lts`](https://www.npmjs.com/package/@brickhouse-tech/angular-lts).
+
+## Security Fixes
+
+- **$compile (ng-srcset):** fix ReDoS in srcset directive regex (SNYK-JS-ANGULAR-6091113 — **HIGH**)
+- **angular.copy:** fix ReDoS in TYPED_ARRAY_REGEXP (CVE-2022-25844 — **HIGH**)
+- **$sanitize:** fix SVG `<image>` href sanitization bypass (SNYK-JS-ANGULAR-9919773)
+- **$compile:** fix srcset allowlist bypass (SNYK-JS-ANGULAR-7924843)
+- **$compile:** fix `<source>` srcset not sanitized (SNYK-JS-ANGULAR-7924842)
+- **input:** fix ReDoS in URL input validation regex (CVE-2020-7212 / SNYK-JS-ANGULAR-3373046)
+- **$resource:** fix ReDoS in URL parameter escaping (SNYK-JS-ANGULAR-3373045)
+- **angular.merge/copy:** block prototype pollution via `__proto__`, `constructor`, `prototype` (CVE-2020-7676)
+
+## Infrastructure
+
+- Migrated from CircleCI to GitHub Actions
+- Migrated from Yarn to npm (Node 20+)
+- Added OIDC npm publishing with provenance
+- Removed unused devDependencies (SauceLabs, Protractor, Firebase, etc.)
+- Package renamed to `@brickhouse-tech/angular-lts`
+
+---
 
 <a name="1.8.3"></a>
 # 1.8.3 ultimate-farewell (2022-04-07)
