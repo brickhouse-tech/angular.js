@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [master, security/*]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: ['14.x']
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install Java (required for Closure Compiler)
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile --non-interactive
+
+      - name: Build package
+        run: yarn grunt package
+
+      - name: Run unit tests
+        run: yarn grunt test:promises-aplus
+
+      - name: Run linting
+        run: yarn grunt eslint
