@@ -1,5 +1,6 @@
 {
-  "name": "angular",
+  "name": "@brickhouse-tech/angular-lts",
+  "version": "1.8.4-lts.0",
   "license": "MIT",
   "branchVersion": "^1.8.0",
   "branchPattern": "1.8.*",
