@@ -1,7 +1,16 @@
-**This is the changelog for `@brickhouse-tech/angular-lts`, a community-maintained fork
-of AngularJS providing security patches after the official End-of-Life (January 2022).**
+# Changelog
 
----
+All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
+
+## [1.8.4-pre.0](https://github.com/brickhouse-tech/angular.js/compare/v1.8.3...v1.8.4-pre.0) (2026-02-17)
+
+
+### Bug Fixes
+
+* **ci:** fix eslint errors in index.js ([efb6140](https://github.com/brickhouse-tech/angular.js/commit/efb61408096fb169cee4f0d44970fbc4d7396c56))
+* **ci:** remove changez and commitizen deps that break npm install ([95c8203](https://github.com/brickhouse-tech/angular.js/commit/95c8203b4c08ddd8b20594855c32becc1f5badef))
+* **security:** patch 8 CVEs for AngularJS LTS ([1507a0b](https://github.com/brickhouse-tech/angular.js/commit/1507a0b742e8c942cd810a41f7376c16c8018303))
+* use prerelease mode for releases until all CVEs patched ([74cc4c3](https://github.com/brickhouse-tech/angular.js/commit/74cc4c310282ffa50994b3150aca724ce9cfe6c1))
 
 <a name="1.8.4-0"></a>
 # 1.8.4-0 (2026-02-17) — LTS Security Release
