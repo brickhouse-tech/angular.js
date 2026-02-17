@@ -1,12 +1,13 @@
 {
-  "name": "angular",
+  "name": "@nickvdyck/angular-lts",
+  "version": "1.8.4-lts.0",
   "license": "MIT",
   "branchVersion": "^1.8.0",
   "branchPattern": "1.8.*",
   "distTag": "next",
   "repository": {
     "type": "git",
-    "url": "https://github.com/angular/angular.js.git"
+    "url": "https://github.com/brickhouse-tech/angular.js.git"
   },
   "engines": {
     "node": ">=12.14.1",

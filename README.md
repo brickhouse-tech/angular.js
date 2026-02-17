@@ -1,3 +1,56 @@
+AngularJS LTS — Community Security Patches
+===========================================
+
+> **This is a community-maintained fork of AngularJS 1.x** providing security patches for known CVEs.
+> The original AngularJS project reached End-of-Life in January 2022 and no longer receives updates.
+
+## Why This Fork?
+
+AngularJS still has **~2 million monthly npm downloads**. Thousands of enterprise applications depend on it.
+The only alternative for security patches was expensive commercial support ($15K-$50K+/year).
+This fork provides **free, open-source security patches** as a drop-in replacement.
+
+## Security Patches (v1.8.4-lts.0)
+
+| CVE / Snyk ID | Severity | Type | Status |
+|---|---|---|---|
+| SNYK-JS-ANGULAR-6091113 | **HIGH** | ReDoS in `ng-srcset` directive | ✅ Fixed |
+| CVE-2022-25844 / SNYK-JS-ANGULAR-3373044 | **HIGH** | ReDoS in `angular.copy` | ✅ Fixed |
+| SNYK-JS-ANGULAR-9919773 | Medium | SVG `<image>` href sanitization bypass | ✅ Fixed |
+| SNYK-JS-ANGULAR-7924843 | Medium | `srcset` allowlist bypass | ✅ Fixed |
+| SNYK-JS-ANGULAR-7924842 | Medium | `<source>` srcset sanitization bypass | ✅ Fixed |
+| SNYK-JS-ANGULAR-3373046 / CVE-2020-7212 | Medium | ReDoS in URL input validation | ✅ Fixed |
+| SNYK-JS-ANGULAR-3373045 | Medium | ReDoS in `$resource` service | ✅ Fixed |
+| CVE-2020-7676 | Medium | Prototype pollution via `merge`/`copy` | ✅ Fixed |
+| SNYK-JS-ANGULAR-2949781 | Medium | XSS via `<textarea>` (IE-specific) | 🔄 Planned |
+| SNYK-JS-ANGULAR-2772735 | Medium | ReDoS in locale number formatting | 🔄 Planned |
+| CVE-2022-25869 | Medium | `$sanitize` bypass via `<style>` (IE/Edge) | 🔄 Planned |
+
+## Installation
+
+```bash
+npm install @nickvdyck/angular-lts
+```
+
+Drop-in replacement — same API, same behavior, just patched.
+
+## Sponsorship
+
+This project is maintained by the community. If your organization depends on AngularJS,
+please consider [sponsoring](https://github.com/sponsors/nickvdyck) to ensure continued maintenance.
+
+| Tier | Price | Benefits |
+|------|-------|----------|
+| Community | Free | Open source patches, npm package |
+| Supporter | $50/mo | Logo on README, priority issues |
+| Professional | $500/mo | 48h SLA, private Slack, migration guidance |
+| Enterprise | $5,000/mo | 4h SLA, custom patches, compliance docs |
+| Platinum | $15,000/mo | On-call engineering, audit reports |
+
+---
+
+*Original README follows:*
+
 AngularJS [![CircleCI](https://circleci.com/gh/angular/angular.js/tree/master.svg?style=shield)](https://circleci.com/gh/angular/workflows/angular.js/tree/master)
 =========
 
