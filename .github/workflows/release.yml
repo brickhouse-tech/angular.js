@@ -1,0 +1,14 @@
+name: release
+
+on:
+  push:
+    branches: ["master"]
+    tags-ignore: ['**']
+
+jobs:
+  release:
+    uses: brickhouse-tech/.github/.github/workflows/release.yml@main
+    with:
+      prerelease: pre
+    secrets:
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}

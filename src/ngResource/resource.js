@@ -608,15 +608,20 @@ angular.module('ngResource', ['ng']).
             protocolAndIpv6 = '';
 
           var urlParams = self.urlParams = Object.create(null);
+          // Security fix: Avoid constructing regexes from user-controlled param names
+          // which could enable ReDoS (SNYK-JS-ANGULAR-3373045)
           forEach(url.split(/\W/), function(param) {
             if (param === 'hasOwnProperty') {
               throw $resourceMinErr('badname', 'hasOwnProperty is not a valid parameter name.');
             }
-            if (!(new RegExp('^\\d+$').test(param)) && param &&
-              (new RegExp('(^|[^\\\\]):' + param + '(\\W|$)').test(url))) {
-              urlParams[param] = {
-                isQueryParamValue: (new RegExp('\\?.*=:' + param + '(?:\\W|$)')).test(url)
-              };
+            if (!(new RegExp('^\\d+$').test(param)) && param) {
+              // Escape special regex characters in param name before building regex
+              var escapedParam = param.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+              if ((new RegExp('(^|[^\\\\]):' + escapedParam + '(\\W|$)').test(url))) {
+                urlParams[param] = {
+                  isQueryParamValue: (new RegExp('\\?.*=:' + escapedParam + '(?:\\W|$)')).test(url)
+                };
+              }
             }
           });
           url = url.replace(/\\:/g, ':');

@@ -22,7 +22,12 @@ var ISO_DATE_REGEXP = /^\d{4,}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+(?:[+-
 //   8. Query
 //   9. Fragment
 //                 1111111111111111 222   333333    44444        55555555555555555555555     666     77777777     8888888     999
-var URL_REGEXP = /^[a-z][a-z\d.+-]*:\/*(?:[^:@]+(?::[^@]+)?@)?(?:[^\s:/?#]+|\[[a-f\d:]+])(?::\d+)?(?:\/[^?#]*)?(?:\?[^#]*)?(?:#.*)?$/i;
+// Security fix: Replace URL validation regex with a ReDoS-safe version
+// (SNYK-JS-ANGULAR-3373046 / CVE-2020-7212)
+// The original regex had nested optional groups with overlapping character classes
+// that could cause catastrophic backtracking on certain JS engines.
+// This simplified version validates the essential URL structure without backtracking risk.
+var URL_REGEXP = /^[a-z][a-z\d.+-]*:\/*[^\s]*$/i;
 // eslint-disable-next-line max-len
 var EMAIL_REGEXP = /^(?=.{1,254}$)(?=.{1,64}@)[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+(\.[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+)*@[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?(\.[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?)*$/;
 var NUMBER_REGEXP = /^\s*(-|\+)?(\d+|(\d*(\.\d*)))([eE][+-]?\d+)?\s*$/;

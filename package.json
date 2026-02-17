@@ -1,20 +1,33 @@
 {
-  "name": "angular",
+  "name": "@brickhouse-tech/angular-lts",
+  "version": "1.8.4-lts.0",
   "license": "MIT",
   "branchVersion": "^1.8.0",
   "branchPattern": "1.8.*",
   "distTag": "next",
   "repository": {
     "type": "git",
-    "url": "https://github.com/angular/angular.js.git"
+    "url": "https://github.com/brickhouse-tech/angular.js.git"
   },
   "engines": {
-    "node": ">=12.14.1",
-    "yarn": ">=1.21.1",
-    "grunt-cli": "^1.2.0"
+    "node": ">=20"
   },
+  "main": "index.js",
+  "files": [
+    "angular.js",
+    "angular.min.js",
+    "angular.min.js.map",
+    "angular.min.js.gzip",
+    "angular-csp.css",
+    "index.js",
+    "LICENSE.md",
+    "README.md"
+  ],
   "scripts": {
-    "commit": "git-cz",
+    "build": "npx grunt package && cp build/angular.js build/angular.min.js build/angular.min.js.map . 2>/dev/null || true",
+    "prepublishOnly": "echo 'Run npm run build first if dist files are missing'",
+    "lint": "npx grunt eslint",
+    "test": "npx grunt test:promises-aplus",
     "test-i18n": "jasmine-node i18n/spec",
     "test-i18n-ucd": "jasmine-node i18n/ucd/spec"
   },
@@ -22,20 +35,13 @@
     "angular-benchpress": "0.x.x",
     "benchmark": "1.x.x",
     "bootstrap": "3.1.1",
-    "browserstacktunnel-wrapper": "2.0.4",
     "canonical-path": "0.0.2",
-    "changez": "^2.1.1",
-    "changez-angular": "^2.1.2",
     "cheerio": "^0.17.0",
-    "commitizen": "^4.2.4",
-    "commitplease": "^2.7.10",
     "cross-spawn": "^4.0.0",
-    "cz-conventional-changelog": "1.1.4",
     "dgeni": "^0.4.9",
     "dgeni-packages": "^0.26.5",
     "eslint-plugin-promise": "^3.6.0",
     "event-stream": "~3.1.0",
-    "firebase-tools": "^9.3.0",
     "glob": "^6.0.1",
     "google-code-prettify": "1.0.1",
     "grunt": "^1.4.1",
@@ -64,15 +70,10 @@
     "jquery-2.1": "npm:jquery@2.1.4",
     "jquery-2.2": "npm:jquery@2.2.4",
     "karma": "4.4.1",
-    "karma-browserstack-launcher": "1.5.1",
     "karma-chrome-launcher": "3.1.0",
-    "karma-edge-launcher": "0.4.2",
     "karma-firefox-launcher": "1.2.0",
-    "karma-ie-launcher": "1.0.0",
     "karma-jasmine": "^1.1.2",
     "karma-junit-reporter": "2.0.1",
-    "karma-safari-launcher": "1.0.0",
-    "karma-sauce-launcher": "2.0.2",
     "karma-script-launcher": "1.0.0",
     "karma-spec-reporter": "0.0.32",
     "load-grunt-tasks": "^3.5.0",
@@ -84,14 +85,11 @@
     "npm-run": "^4.1.0",
     "open-sans-fontface": "^1.4.0",
     "promises-aplus-tests": "~2.1.0",
-    "protractor": "^7.0.0",
     "q": "~1.0.0",
     "q-io": "^1.10.9",
     "qq": "^0.3.5",
     "rewire": "~2.1.0",
-    "sauce-connect": "https://saucelabs.com/downloads/sc-4.6.2-linux.tar.gz",
     "sax": "^1.1.1",
-    "selenium-webdriver": "^4.0.0-alpha.1",
     "semver": "^5.4.1",
     "serve-favicon": "^2.3.0",
     "serve-index": "^1.8.0",
@@ -101,20 +99,8 @@
     "stringmap": "^0.2.2"
   },
   "dependencies": {},
-  "resolutions": {
-    "//1": "`natives@1.1.0` does not work with Node.js 10.x on Windows 10",
-    "//2": "(E.g. see https://github.com/gulpjs/gulp/issues/2162 and https://github.com/nodejs/node/issues/25132.)",
+  "overrides": {
     "natives": "1.1.6",
-    "//3": "`graceful-fs` needs to be pinned to support gulp 3, on Node v12+",
     "graceful-fs": "^4.2.3"
-  },
-  "commitplease": {
-    "style": "angular",
-    "nohook": true
-  },
-  "config": {
-    "commitizen": {
-      "path": "node_modules/cz-conventional-changelog"
-    }
   }
 }
