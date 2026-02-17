@@ -8,3 +8,5 @@ on:
 jobs:
   publish:
     uses: brickhouse-tech/.github/.github/workflows/publish.yml@main
+    with:
+      tag: pre
