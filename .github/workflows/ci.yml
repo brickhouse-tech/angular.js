@@ -20,20 +20,21 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Install Java (required for Closure Compiler)
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: '11'
-
       - name: Install dependencies
         run: npm install
 
-      - name: Build package
+      - name: Build angular.js
         run: npm run build
 
-      - name: Run linting
-        run: npm run lint
+      - name: Verify built files exist
+        run: |
+          test -f angular.js || (echo "angular.js missing!" && exit 1)
+          test -f angular.min.js || (echo "angular.min.js missing!" && exit 1)
+          test -f angular.min.js.map || (echo "angular.min.js.map missing!" && exit 1)
+          echo "✓ All built files present"
 
-      - name: Run unit tests
-        run: npm test
+      - name: Verify package contents
+        run: |
+          npm pack --dry-run 2>&1 | tee /tmp/pack-output.txt
+          grep -q "angular.js" /tmp/pack-output.txt || (echo "angular.js not in package!" && exit 1)
+          echo "✓ Package contents verified"

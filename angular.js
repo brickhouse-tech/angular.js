@@ -1,5 +1,5 @@
 /**
- * @license AngularJS v1.9.1-local+sha.5e21f4aad
+ * @license AngularJS v1.9.1-local+sha.260d5cb23
  * (c) 2010-2020 Google LLC. http://angularjs.org
  * License: MIT
  */
@@ -99,7 +99,7 @@ function isValidObjectMaxDepth(maxDepth) {
 function minErr(module, ErrorConstructor) {
   ErrorConstructor = ErrorConstructor || Error;
 
-  var url = 'https://errors.angularjs.org/1.9.1-local+sha.5e21f4aad/';
+  var url = 'https://errors.angularjs.org/1.9.1-local+sha.260d5cb23/';
   var regex = url.replace('.', '\\.') + '[\\s\\S]*';
   var errRegExp = new RegExp(regex, 'g');
 
@@ -2836,7 +2836,7 @@ function toDebugString(obj, maxDepth) {
 var version = {
   // These placeholder strings will be replaced by grunt's `build` task.
   // They need to be double- or single-quoted.
-  full: '1.9.1-local+sha.5e21f4aad',
+  full: '1.9.1-local+sha.260d5cb23',
   major: 1,
   minor: 9,
   dot: 1,
@@ -2991,7 +2991,7 @@ function publishExternalAPI(angular) {
       });
     }
   ])
-  .info({ angularVersion: '1.9.1-local+sha.5e21f4aad' });
+  .info({ angularVersion: '1.9.1-local+sha.260d5cb23' });
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
