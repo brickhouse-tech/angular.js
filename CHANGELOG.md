@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.9.1](https://github.com/brickhouse-tech/angular.js/compare/v1.9.0...v1.9.1) (2026-02-18)
+
+
+### Bug Fixes
+
+* run build in prepublishOnly to include angular.js in package ([4c1f879](https://github.com/brickhouse-tech/angular.js/commit/4c1f879a829fe874c11f0d647b0dd3af6d5decd8))
+
 ## [1.9.0](https://github.com/brickhouse-tech/angular.js/compare/v1.9.0-pre.1...v1.9.0) (2026-02-18)
 
 ## [1.9.0-pre.1](https://github.com/brickhouse-tech/angular.js/compare/v1.9.0-pre.0...v1.9.0-pre.1) (2026-02-18)
