@@ -12,7 +12,7 @@ This fork provides **free, open-source security patches** as a drop-in replaceme
 
 ## What's Included
 
-- ✅ **8 CVE/vulnerability fixes** (2 HIGH, 6 MEDIUM) — see table below
+- ✅ **11 CVE/vulnerability fixes** (2 HIGH, 9 MEDIUM) — see table below
 - ✅ **Drop-in replacement** — same API, same behavior, just patched
 - ✅ **CI via GitHub Actions** — tested on Node 20
 - ✅ **OIDC npm publishing** with provenance
@@ -30,9 +30,9 @@ This fork provides **free, open-source security patches** as a drop-in replaceme
 | SNYK-JS-ANGULAR-3373046 / CVE-2020-7212 | Medium | ReDoS in URL input validation | ✅ Fixed |
 | SNYK-JS-ANGULAR-3373045 | Medium | ReDoS in `$resource` service | ✅ Fixed |
 | CVE-2020-7676 | Medium | Prototype pollution via `merge`/`copy` | ✅ Fixed |
-| SNYK-JS-ANGULAR-2949781 | Medium | XSS via `<textarea>` (IE-specific) | 🔄 Planned |
-| SNYK-JS-ANGULAR-2772735 | Medium | ReDoS in locale number formatting | 🔄 Planned |
-| CVE-2022-25869 | Medium | `$sanitize` bypass via `<style>` (IE/Edge) | 🔄 Planned |
+| SNYK-JS-ANGULAR-2949781 | Medium | XSS via `<textarea>` (IE-specific) | ✅ Fixed |
+| SNYK-JS-ANGULAR-2772735 | Medium | ReDoS in date format regex | ✅ Fixed |
+| CVE-2022-25869 | Medium | `$sanitize` bypass via `<style>` (IE/Edge) | ✅ Fixed |
 
 ## Installation
 

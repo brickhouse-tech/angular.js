@@ -2797,7 +2797,18 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
           }
           break;
         case NODE_TYPE_TEXT: /* Text Node */
-          addTextInterpolateDirective(directives, node.nodeValue);
+          // Security fix: Do not interpolate text content inside <textarea> and <select> elements.
+          // In IE, when a page is restored from bfcache, the textarea's value (which may contain
+          // user-supplied AngularJS expressions like {{expr}}) gets recompiled, leading to XSS.
+          // (CVE-2022-25869, SNYK-JS-ANGULAR-2949781)
+          if (node.parentNode) {
+            var parentTagName = nodeName_(node.parentNode);
+            if (parentTagName !== 'textarea' && parentTagName !== 'select') {
+              addTextInterpolateDirective(directives, node.nodeValue);
+            }
+          } else {
+            addTextInterpolateDirective(directives, node.nodeValue);
+          }
           break;
         case NODE_TYPE_COMMENT: /* Comment */
           if (!commentDirectivesEnabled) break;

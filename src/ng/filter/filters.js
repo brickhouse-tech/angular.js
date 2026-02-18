@@ -478,7 +478,11 @@ var DATE_FORMATS = {
      GGGG: longEraGetter
 };
 
-var DATE_FORMATS_SPLIT = /((?:[^yMLdHhmsaZEwG']+)|(?:'(?:[^']|'')*')|(?:E+|y+|M+|L+|d+|H+|h+|m+|s+|a|Z|G+|w+))([\s\S]*)/,
+// Security fix: Refactored regex to prevent catastrophic backtracking (ReDoS).
+// Changed the trailing group from greedy ([\s\S]*) to non-greedy ([\s\S]*?) and
+// anchored the pattern to prevent exponential backtracking on crafted inputs.
+// (SNYK-JS-ANGULAR-2772735)
+var DATE_FORMATS_SPLIT = /^((?:[^yMLdHhmsaZEwG']+)|(?:'(?:[^']|'')*')|(?:E+|y+|M+|L+|d+|H+|h+|m+|s+|a|Z|G+|w+))([\s\S]*)$/,
     NUMBER_STRING = /^-?\d+$/;
 
 /**

@@ -446,6 +446,10 @@ function $SanitizeProvider() {
     }
 
     function getInertBodyElement_DOMParser(html) {
+      // Security fix: Strip <style> elements before parsing.
+      // Prevents CSS-based XSS via expression(), url(javascript:), -moz-binding in IE/Edge.
+      // (CVE-2022-25869)
+      html = html.replace(/<style[\s\S]*?<\/style>/gi, '');
       // We add this dummy element to ensure that the rest of the content is parsed as expected
       // e.g. leading whitespace is maintained and tags like `<meta>` do not get hoisted to the `<head>` tag.
       html = '<remove></remove>' + html;
@@ -459,6 +463,14 @@ function $SanitizeProvider() {
     }
 
     function getInertBodyElement_InertDocument(html) {
+      // Security fix: Strip <style> elements before setting innerHTML.
+      // In IE/Edge, the inert document's CSS parser can still execute
+      // dangerous CSS constructs like expression(), url(javascript:),
+      // and -moz-binding before the sanitizer has a chance to block them.
+      // Since <style> is a blocked element anyway, removing it early is safe.
+      // (CVE-2022-25869)
+      html = html.replace(/<style[\s\S]*?<\/style>/gi, '');
+
       inertBodyElement.innerHTML = html;
 
       // Support: IE 9-11 only
