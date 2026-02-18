@@ -24,7 +24,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "npx grunt package && cp build/angular.js build/angular.min.js build/angular.min.js.map . 2>/dev/null || true",
+    "build": "npx grunt validate-angular-files clean buildall write && cp build/angular.js . && npx terser angular.js -o angular.min.js --source-map \"filename=angular.min.js.map\" -c -m",
     "prepublishOnly": "npm run build",
     "lint": "npx grunt eslint",
     "test": "npx grunt test:promises-aplus",
