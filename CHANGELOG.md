@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.9.2](https://github.com/brickhouse-tech/angular.js/compare/v1.9.1...v1.9.2) (2026-02-18)
+
+
+### Bug Fixes
+
+* **security:** patch 3 remaining CVEs for AngularJS LTS ([56f6220](https://github.com/brickhouse-tech/angular.js/commit/56f6220e0c403ca109effc053ad24ebd02af0730))
+
 ## [1.9.1](https://github.com/brickhouse-tech/angular.js/compare/v1.9.0...v1.9.1) (2026-02-18)
 
 
