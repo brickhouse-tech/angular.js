@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html ng-app="demoApp">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AngularJS LTS — Live Demo</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0d1117; color: #c9d1d9; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 2rem; }
+    .container { max-width: 720px; width: 100%; }
+    h1 { font-size: 2rem; margin-bottom: 0.25rem; color: #58a6ff; }
+    .subtitle { color: #8b949e; margin-bottom: 2rem; }
+    .card { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem; }
+    .card h2 { color: #58a6ff; font-size: 1.1rem; margin-bottom: 1rem; }
+    .status { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+    .dot.green { background: #3fb950; }
+    .dot.red { background: #f85149; }
+    label { color: #8b949e; display: block; margin-bottom: 0.25rem; font-size: 0.85rem; }
+    input[type="text"], input[type="range"] { width: 100%; padding: 0.5rem; background: #0d1117; border: 1px solid #30363d; border-radius: 4px; color: #c9d1d9; font-size: 1rem; margin-bottom: 1rem; }
+    input[type="range"] { padding: 0; }
+    .output { background: #0d1117; border: 1px solid #30363d; border-radius: 4px; padding: 0.75rem; font-family: monospace; font-size: 0.9rem; color: #3fb950; }
+    .todo-list { list-style: none; }
+    .todo-list li { padding: 0.5rem 0; border-bottom: 1px solid #21262d; display: flex; align-items: center; gap: 0.5rem; }
+    .todo-list li:last-child { border-bottom: none; }
+    .todo-list input[type="checkbox"] { accent-color: #58a6ff; }
+    .done { text-decoration: line-through; color: #8b949e; }
+    button { background: #238636; color: #fff; border: none; border-radius: 4px; padding: 0.4rem 0.75rem; cursor: pointer; font-size: 0.85rem; }
+    button:hover { background: #2ea043; }
+    button.danger { background: #da3633; }
+    button.danger:hover { background: #f85149; }
+    .row { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+    .row input { flex: 1; margin-bottom: 0; }
+    .install { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; font-family: monospace; color: #3fb950; font-size: 0.9rem; }
+    a { color: #58a6ff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .footer { margin-top: 2rem; color: #8b949e; font-size: 0.8rem; text-align: center; }
+    .badge { display: inline-block; background: #238636; color: #fff; padding: 0.15rem 0.5rem; border-radius: 3px; font-size: 0.75rem; margin-left: 0.5rem; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>AngularJS LTS <span class="badge">v{{version}}</span></h1>
+  <p class="subtitle">Community security patches for AngularJS 1.x — drop-in replacement</p>
+
+  <div class="install">$ npm install @brickhouse-tech/angular-lts</div>
+
+  <!-- Status Card -->
+  <div class="card">
+    <h2>✅ Status</h2>
+    <div class="status"><span class="dot green"></span> AngularJS loaded: v{{version}}</div>
+    <div class="status"><span class="dot green"></span> Two-way data binding: working</div>
+    <div class="status"><span class="dot green"></span> Directives: working</div>
+    <div class="status"><span class="dot green"></span> Dependency injection: working</div>
+    <div class="status"><span class="dot green"></span> Security patches: 8 CVEs fixed</div>
+  </div>
+
+  <!-- Two-way Binding Demo -->
+  <div class="card">
+    <h2>🔄 Two-Way Data Binding</h2>
+    <label>Type something:</label>
+    <input type="text" ng-model="greeting" placeholder="Hello, AngularJS LTS!">
+    <div class="output">{{ greeting || 'Start typing above...' }}</div>
+  </div>
+
+  <!-- Computed Values -->
+  <div class="card">
+    <h2>🧮 Computed Values</h2>
+    <label>Price ($):</label>
+    <input type="text" ng-model="price" placeholder="100">
+    <label>Tax rate: {{taxRate}}%</label>
+    <input type="range" min="0" max="25" ng-model="taxRate">
+    <div class="output">
+      Subtotal: ${{price || 0}} &middot;
+      Tax: ${{(price * taxRate / 100) | number:2}} &middot;
+      <strong>Total: ${{(price * (1 + taxRate/100)) | number:2}}</strong>
+    </div>
+  </div>
+
+  <!-- Todo List -->
+  <div class="card" ng-controller="TodoCtrl">
+    <h2>📝 Todo List (ng-repeat + ng-model)</h2>
+    <div class="row">
+      <input type="text" ng-model="newTodo" placeholder="Add a task..." ng-keypress="$event.keyCode === 13 && addTodo()">
+      <button ng-click="addTodo()">Add</button>
+    </div>
+    <ul class="todo-list">
+      <li ng-repeat="todo in todos track by $index">
+        <input type="checkbox" ng-model="todo.done">
+        <span ng-class="{done: todo.done}">{{todo.text}}</span>
+        <button class="danger" ng-click="removeTodo($index)" style="margin-left:auto; font-size:0.75rem; padding:0.2rem 0.4rem;">✕</button>
+      </li>
+    </ul>
+    <div class="output" style="margin-top:0.75rem;">
+      {{remaining()}} of {{todos.length}} remaining
+    </div>
+  </div>
+
+  <!-- Security Info -->
+  <div class="card">
+    <h2>🔒 Security Patches Included</h2>
+    <ul style="list-style:none; line-height: 1.8;">
+      <li>🔴 <strong>HIGH:</strong> ReDoS in ng-srcset directive</li>
+      <li>🔴 <strong>HIGH:</strong> ReDoS in angular.copy</li>
+      <li>🟡 SVG &lt;image&gt; href sanitization bypass</li>
+      <li>🟡 srcset allowlist bypass</li>
+      <li>🟡 &lt;source&gt; srcset not sanitized</li>
+      <li>🟡 ReDoS in URL input validation</li>
+      <li>🟡 ReDoS in $resource service</li>
+      <li>🟡 Prototype pollution via merge/copy</li>
+    </ul>
+  </div>
+
+  <div class="footer">
+    <a href="https://github.com/brickhouse-tech/angular.js">GitHub</a> &middot;
+    <a href="https://www.npmjs.com/package/@brickhouse-tech/angular-lts">npm</a> &middot;
+    <a href="https://github.com/sponsors/brickhouse-tech">Sponsor</a>
+    <br><br>
+    Maintained by <a href="https://github.com/brickhouse-tech">Brickhouse Tech</a> &middot; MIT License
+  </div>
+</div>
+
+<!-- Load AngularJS LTS from unpkg -->
+<script src="https://unpkg.com/@brickhouse-tech/angular-lts/angular.js"></script>
+<script>
+  var app = angular.module('demoApp', []);
+
+  app.run(function($rootScope) {
+    $rootScope.version = angular.version.full;
+    $rootScope.taxRate = 8;
+  });
+
+  app.controller('TodoCtrl', function($scope) {
+    $scope.todos = [
+      { text: 'Upgrade to @brickhouse-tech/angular-lts', done: true },
+      { text: 'Remove HeroDevs invoice from budget', done: false },
+      { text: 'Sleep well knowing CVEs are patched', done: false }
+    ];
+
+    $scope.addTodo = function() {
+      if ($scope.newTodo && $scope.newTodo.trim()) {
+        $scope.todos.push({ text: $scope.newTodo.trim(), done: false });
+        $scope.newTodo = '';
+      }
+    };
+
+    $scope.removeTodo = function(index) {
+      $scope.todos.splice(index, 1);
+    };
+
+    $scope.remaining = function() {
+      return $scope.todos.filter(function(t) { return !t.done; }).length;
+    };
+  });
+</script>
+
+</body>
+</html>
