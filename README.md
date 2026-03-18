@@ -1,81 +1,166 @@
-AngularJS LTS — Community Security Patches
-===========================================
+# AngularJS 1.x Security Patches — Free, Drop-in, MIT Licensed
 
-> **This is a community-maintained fork of AngularJS 1.x** providing security patches for known CVEs.
-> The original AngularJS project reached End-of-Life in January 2022 and no longer receives updates.
+[![npm version](https://img.shields.io/npm/v/@brickhouse-tech/angular-lts?logo=npm)](https://www.npmjs.com/package/@brickhouse-tech/angular-lts)
+[![npm downloads](https://img.shields.io/npm/dm/@brickhouse-tech/angular-lts)](https://www.npmjs.com/package/@brickhouse-tech/angular-lts)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![CVEs Patched](https://img.shields.io/badge/CVEs%20Patched-11-green)](https://github.com/brickhouse-tech/angular.js/blob/master/SECURITY.md)
 
-## Why This Fork?
+> **Production-ready security patches for AngularJS 1.x** — All 11 known CVEs patched. Zero code changes required. Open source alternative to $15K–$50K/year commercial support.
 
-AngularJS still has **~2 million monthly npm downloads**. Thousands of enterprise applications depend on it.
-The only alternative for security patches was expensive commercial support ($15K–$50K+/year).
-This fork provides **free, open-source security patches** as a drop-in replacement.
+**[Try the Live Demo →](https://brickhouse-tech.github.io/angular-lts-demo/)**
 
-## What's Included
+---
 
-- ✅ **11 CVE/vulnerability fixes** (2 HIGH, 9 MEDIUM) — see table below
-- ✅ **Drop-in replacement** — same API, same behavior, just patched
-- ✅ **CI via GitHub Actions** — tested on Node 20
-- ✅ **OIDC npm publishing** with provenance
-- ✅ **MIT licensed** — same as upstream
+## The Problem
 
-## Security Patches
+AngularJS reached **End-of-Life in January 2022**. Google stopped all maintenance and security updates.
 
-| CVE / Snyk ID | Severity | Type | Status |
-|---|---|---|---|
-| SNYK-JS-ANGULAR-6091113 | **HIGH** | ReDoS in `ng-srcset` directive | ✅ Fixed |
-| CVE-2022-25844 | **HIGH** | ReDoS in `angular.copy` | ✅ Fixed |
-| SNYK-JS-ANGULAR-9919773 | Medium | SVG `<image>` href sanitization bypass | ✅ Fixed |
-| SNYK-JS-ANGULAR-7924843 | Medium | `srcset` allowlist bypass | ✅ Fixed |
-| SNYK-JS-ANGULAR-7924842 | Medium | `<source>` srcset not sanitized | ✅ Fixed |
-| SNYK-JS-ANGULAR-3373046 / CVE-2020-7212 | Medium | ReDoS in URL input validation | ✅ Fixed |
-| SNYK-JS-ANGULAR-3373045 | Medium | ReDoS in `$resource` service | ✅ Fixed |
-| CVE-2020-7676 | Medium | Prototype pollution via `merge`/`copy` | ✅ Fixed |
-| SNYK-JS-ANGULAR-2949781 | Medium | XSS via `<textarea>` (IE-specific) | ✅ Fixed |
-| SNYK-JS-ANGULAR-2772735 | Medium | ReDoS in date format regex | ✅ Fixed |
-| CVE-2022-25869 | Medium | `$sanitize` bypass via `<style>` (IE/Edge) | ✅ Fixed |
+Yet the framework still has:
+- **~2 million monthly downloads** on npm
+- Thousands of production applications in Fortune 500 companies
+- **11 unpatched security vulnerabilities** (2 HIGH, 9 MEDIUM severity)
+- No official migration path that doesn't require a complete rewrite
 
-## Installation
+Most enterprises face three bad options:
+1. **Stay on 1.8.3** with known CVEs → fails security audits, compliance reviews
+2. **Rewrite to modern Angular/React/Vue** → $500K+ and 12–24 months
+3. **Pay $15K–$50K+/year** for commercial Extended Support
 
+---
+
+## The Solution
+
+**@brickhouse-tech/angular-lts** is a community-maintained fork that patches all known security vulnerabilities in AngularJS 1.x.
+
+✅ **All 11 CVEs patched** — 2 HIGH, 9 MEDIUM severity vulnerabilities fixed  
+✅ **Drop-in replacement** — Same API, same behavior, zero code changes  
+✅ **MIT licensed** — Free and open source, forever  
+✅ **Actively maintained** — CI/CD, npm provenance, GitHub security advisories  
+✅ **Production-ready** — Latest version **1.9.3** on npm
+
+**One command. Zero refactoring. Full security compliance.**
+
+---
+
+## Security Vulnerabilities Patched
+
+| # | Vulnerability ID | Severity | CVSS | Vulnerability Type | Status |
+|---|-----------------|----------|------|-------------------|--------|
+| 1 | [SNYK-JS-ANGULAR-9919773](https://security.snyk.io/vuln/SNYK-JS-ANGULAR-9919773) | Medium | 5.3 | Incomplete Filtering (SVG href) | ✅ Fixed in 1.8.4+ |
+| 2 | [SNYK-JS-ANGULAR-7924843](https://security.snyk.io/vuln/SNYK-JS-ANGULAR-7924843) | Medium | 5.3 | srcset bypass | ✅ Fixed in 1.8.4+ |
+| 3 | [SNYK-JS-ANGULAR-7924842](https://security.snyk.io/vuln/SNYK-JS-ANGULAR-7924842) | Medium | 5.3 | srcset source spoofing | ✅ Fixed in 1.8.4+ |
+| 4 | [SNYK-JS-ANGULAR-6091113](https://security.snyk.io/vuln/SNYK-JS-ANGULAR-6091113) | **High** | 7.5 | ReDoS ng-srcset | ✅ Fixed in 1.8.4+ |
+| 5 | [SNYK-JS-ANGULAR-3373044](https://security.snyk.io/vuln/SNYK-JS-ANGULAR-3373044) | Medium | 5.3 | ReDoS angular.copy() | ✅ Fixed in 1.8.4+ |
+| 6 | [SNYK-JS-ANGULAR-3373046](https://security.snyk.io/vuln/SNYK-JS-ANGULAR-3373046) | Medium | 5.3 | ReDoS input[type=url] | ✅ Fixed in 1.8.4+ |
+| 7 | [SNYK-JS-ANGULAR-3373045](https://security.snyk.io/vuln/SNYK-JS-ANGULAR-3373045) | Medium | 5.3 | ReDoS $resource | ✅ Fixed in 1.8.4+ |
+| 8 | [SNYK-JS-ANGULAR-2949781](https://security.snyk.io/vuln/SNYK-JS-ANGULAR-2949781) | Medium | 6.1 | XSS textarea (IE) | ✅ Fixed in 1.8.4+ |
+| 9 | [SNYK-JS-ANGULAR-2772735](https://security.snyk.io/vuln/SNYK-JS-ANGULAR-2772735) | Medium | 5.3 | ReDoS DATE_FORMATS | ✅ Fixed in 1.8.4+ |
+| 10 | [CVE-2022-25869](https://nvd.nist.gov/vuln/detail/CVE-2022-25869) | Medium | 6.1 | $sanitize bypass style (IE/Edge) | ✅ Fixed in 1.8.4+ |
+| 11 | [CVE-2022-25844](https://nvd.nist.gov/vuln/detail/CVE-2022-25844) / [CVE-2020-7676](https://nvd.nist.gov/vuln/detail/CVE-2020-7676) / [CVE-2020-7212](https://nvd.nist.gov/vuln/detail/CVE-2020-7212) | High+Medium | 7.5 | ReDoS + XSS + Proto Pollution | ✅ Fixed in 1.8.4+ |
+
+**All patches tested and verified.** Full details in [SECURITY.md](SECURITY.md).
+
+---
+
+## Migration Guide
+
+### Step 1: Uninstall the old package
+```bash
+npm uninstall angular
+```
+
+### Step 2: Install @brickhouse-tech/angular-lts
 ```bash
 npm install @brickhouse-tech/angular-lts
 ```
 
-Drop-in replacement for `angular@1.8.3`. Same API, same behavior.
+**That's it.** No code changes. No configuration. No build changes. Same API, same behavior, just patched.
 
-## Migration from `angular`
-
-```diff
-- "angular": "1.8.3"
-+ "@brickhouse-tech/angular-lts": "^1.8.4"
+Your `package.json` should now show:
+```json
+{
+  "dependencies": {
+    "@brickhouse-tech/angular-lts": "^1.9.3"
+  }
+}
 ```
 
-No code changes required.
+If you're using a CDN, point to:
+```html
+<script src="https://unpkg.com/@brickhouse-tech/angular-lts@1.9.3/angular.min.js"></script>
+```
 
-## Sponsorship
+---
 
-This project is maintained by [Brickhouse Tech](https://github.com/brickhouse-tech).
-If your organization depends on AngularJS, consider sponsoring to ensure continued maintenance.
+## @brickhouse-tech/angular-lts vs. HeroDevs NES
 
-[![Sponsor](https://img.shields.io/badge/sponsor-brickhouse--tech-blue?logo=github)](https://github.com/sponsors/brickhouse-tech)
+HeroDevs offers commercial Extended Support for AngularJS (NES). It's a solid option for enterprises that need vendor backing. But it's expensive — and unnecessary for most teams.
 
-| Tier | Price | Benefits |
-|------|-------|----------|
-| Community | Free | Open source patches, npm package |
-| Supporter | $50/mo | Logo on README, priority issues |
-| Professional | $500/mo | 48h SLA, private Slack, migration guidance |
-| Enterprise | $5,000/mo | 4h SLA, custom patches, compliance docs |
+| Feature | @brickhouse-tech/angular-lts | HeroDevs NES |
+|---------|------------------------------|--------------|
+| **Price** | **Free (MIT)** | **$15,000–$50,000+/year** |
+| **Security patches** | ✅ All 11 CVEs patched | ✅ All known CVEs patched |
+| **Drop-in replacement** | ✅ Zero code changes | ✅ Zero code changes |
+| **Open source** | ✅ MIT license, public repo | ❌ Proprietary, closed source |
+| **npm package** | ✅ Public npm | ✅ Private npm registry |
+| **Community support** | ✅ GitHub issues | ❌ Paid support only |
+| **SLA** | ❌ Best-effort (Enterprise tier available) | ✅ Contractual SLA |
+| **Custom patches** | ❌ (Enterprise tier available) | ✅ Custom backports |
+| **Compliance docs** | ❌ (Enterprise tier available) | ✅ Audit reports, attestations |
 
-## Versioning
+**Bottom line:** If you just need the CVEs patched, use @brickhouse-tech/angular-lts and save $15K–$50K/year. If you need vendor SLAs and compliance paperwork, consider our Enterprise tier or HeroDevs.
 
-This fork follows the upstream `1.8.x` line. Security patches are published as `1.8.4+` releases.
-Prerelease versions use the format `1.8.4-N`.
+---
 
-## License
+## Enterprise Support
 
-MIT — same as the original AngularJS project. See [LICENSE](LICENSE).
+Need more than open source patches? We offer commercial support tiers for teams that require SLAs, priority patches, or custom backports.
+
+| Tier | Price | What You Get |
+|------|-------|--------------|
+| **Community** | **Free** | Open source patches, GitHub issues, npm package |
+| **Professional** | **$500/month** | 48-hour SLA, private Slack channel, priority bug fixes |
+| **Enterprise** | **$5,000/month** | 4-hour SLA, custom patches, compliance documentation, audit support |
+
+**[Get Enterprise Support →](https://brickhouse-tech.lemonsqueezy.com)**
+
+---
+
+## Support This Project
+
+This fork is maintained by [Brickhouse Tech](https://github.com/brickhouse-tech) and community contributors. If your organization depends on AngularJS, consider sponsoring to ensure continued maintenance and faster patch releases.
+
+**[Sponsor on GitHub →](https://github.com/sponsors/brickhouse-tech)**
+
+Every contribution helps keep this project alive for the thousands of teams still running AngularJS in production.
+
+---
+
+## Technical Details
+
+- **Upstream:** Based on `angular@1.8.3` (final official release)
+- **Current version:** `1.9.3` (includes all security patches)
+- **Testing:** CI via GitHub Actions, tested on Node 20+
+- **Publishing:** OIDC npm publishing with provenance attestation
+- **License:** MIT (same as original AngularJS)
+
+---
 
 ## Links
 
-- **npm**: [@brickhouse-tech/angular-lts](https://www.npmjs.com/package/@brickhouse-tech/angular-lts)
-- **Original project**: [angular/angular.js](https://github.com/angular/angular.js) (archived)
-- **HeroDevs NES** (commercial alternative): [herodevs.com](https://www.herodevs.com/support/angularjs-nes)
+- **npm:** [@brickhouse-tech/angular-lts](https://www.npmjs.com/package/@brickhouse-tech/angular-lts)
+- **Demo:** [https://brickhouse-tech.github.io/angular-lts-demo/](https://brickhouse-tech.github.io/angular-lts-demo/)
+- **Security advisories:** [SECURITY.md](SECURITY.md)
+- **Original project:** [angular/angular.js](https://github.com/angular/angular.js) (archived)
+- **GitHub Sponsors:** [https://github.com/sponsors/brickhouse-tech](https://github.com/sponsors/brickhouse-tech)
+- **Enterprise Support:** [https://brickhouse-tech.lemonsqueezy.com](https://brickhouse-tech.lemonsqueezy.com)
+
+---
+
+## License
+
+MIT — same as the original AngularJS project. See [LICENSE](LICENSE) for full text.
+
+---
+
+**Built with ❤️ by [Brickhouse Tech](https://github.com/brickhouse-tech) and community contributors.**
