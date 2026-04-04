@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.9.5](https://github.com/brickhouse-tech/angular.js/compare/v1.9.4...v1.9.5) (2026-04-04)
+
 ## [1.9.4](https://github.com/brickhouse-tech/angular.js/compare/v1.9.3...v1.9.4) (2026-03-18)
 
 ## [1.9.3](https://github.com/brickhouse-tech/angular.js/compare/v1.9.2...v1.9.3) (2026-03-11)
