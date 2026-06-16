@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.10.0](https://github.com/brickhouse-tech/angular.js/compare/v1.9.6...v1.10.0) (2026-06-16)
+
+
+### Features
+
+* publish patched module files (sanitize, route, animate, etc.) to npm ([f48826a](https://github.com/brickhouse-tech/angular.js/commit/f48826a15f493559002b28e6a4d99a14c76920ac))
+
 ## [1.9.6](https://github.com/brickhouse-tech/angular.js/compare/v1.9.5...v1.9.6) (2026-05-13)
 
 ## [1.9.5](https://github.com/brickhouse-tech/angular.js/compare/v1.9.4...v1.9.5) (2026-04-04)
