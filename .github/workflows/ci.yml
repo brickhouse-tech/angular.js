@@ -1,4 +1,4 @@
-name: CI
+name: ci
 
 on:
   push:
@@ -52,3 +52,21 @@ jobs:
           # Verify $sanitize style fix (CVE-2022-25869)
           grep -q "CVE-2022-25869" build/angular-sanitize.js || (echo "$sanitize style fix missing!" && exit 1)
           echo "✓ $sanitize style fix present"
+
+  # Aggregate gate — single stable required check `gate` (see brickhouse-tech/github-ops).
+  gate:
+    name: gate
+    needs: [build-and-test]
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Check job results
+        run: |
+          results=($(echo '${{ toJSON(needs.*.result) }}' | jq -r '.[]'))
+          for r in "${results[@]}"; do
+            if [[ "$r" != "success" ]]; then
+              echo "One or more jobs failed: $r"
+              exit 1
+            fi
+          done
+          echo "All jobs passed"
