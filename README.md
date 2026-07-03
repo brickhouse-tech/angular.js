@@ -36,7 +36,7 @@ Most enterprises face three bad options:
 ✅ **Drop-in replacement** — Same API, same behavior, zero code changes  
 ✅ **MIT licensed** — Free and open source, forever  
 ✅ **Actively maintained** — CI/CD, npm provenance, GitHub security advisories  
-✅ **Production-ready** — Latest version **1.9.3** on npm
+✅ **Production-ready** — Latest version **1.10.2** on npm
 
 **One command. Zero refactoring. Full security compliance.**
 
@@ -80,14 +80,14 @@ Your `package.json` should now show:
 ```json
 {
   "dependencies": {
-    "@brickhouse-tech/angular-lts": "^1.9.3"
+    "@brickhouse-tech/angular-lts": "^1.10.2"
   }
 }
 ```
 
 If you're using a CDN, point to:
 ```html
-<script src="https://unpkg.com/@brickhouse-tech/angular-lts@1.9.3/angular.min.js"></script>
+<script src="https://unpkg.com/@brickhouse-tech/angular-lts@1.10.2/angular.min.js"></script>
 ```
 
 ---
@@ -139,7 +139,7 @@ Every contribution helps keep this project alive for the thousands of teams stil
 ## Technical Details
 
 - **Upstream:** Based on `angular@1.8.3` (final official release)
-- **Current version:** `1.9.3` (includes all security patches)
+- **Current version:** `1.10.2` (includes all security patches)
 - **Testing:** CI via GitHub Actions, tested on Node 20+
 - **Publishing:** OIDC npm publishing with provenance attestation
 - **License:** MIT (same as original AngularJS)
