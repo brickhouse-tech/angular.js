@@ -53,6 +53,10 @@ jobs:
           grep -q "CVE-2022-25869" build/angular-sanitize.js || (echo "$sanitize style fix missing!" && exit 1)
           echo "✓ $sanitize style fix present"
 
+          # Verify SCE regex anchoring fix (CVE-2026-11998)
+          grep -q "CVE-2026-11998" angular.js || (echo "SCE regex anchor fix missing!" && exit 1)
+          echo "✓ SCE regex anchor fix present"
+
   # Aggregate gate — single stable required check `gate` (see brickhouse-tech/github-ops).
   gate:
     name: gate
