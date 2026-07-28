@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.10.4](https://github.com///compare/v1.10.3...v1.10.4) (2026-07-28)
+
+### Bug Fixes
+
+* **security:** anchor SCE regex matchers as a group (CVE-2026-11998) ([59df2ba](https://github.com///commit/59df2bacbbd99eb5496adb12a542b516eccc68d7))
 ## [1.10.3](https://github.com/brickhouse-tech/angular.js/compare/v1.10.2...v1.10.3) (2026-07-03)
 
 ## [1.10.2](https://github.com/brickhouse-tech/angular.js/compare/v1.10.1...v1.10.2) (2026-07-01)
