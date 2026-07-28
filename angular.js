@@ -1,5 +1,5 @@
 /**
- * @license AngularJS v1.9.2-local+sha.4af6941da
+ * @license AngularJS v1.10.4-local+sha.ed73bd9bd
  * (c) 2010-2020 Google LLC. http://angularjs.org
  * License: MIT
  */
@@ -99,7 +99,7 @@ function isValidObjectMaxDepth(maxDepth) {
 function minErr(module, ErrorConstructor) {
   ErrorConstructor = ErrorConstructor || Error;
 
-  var url = 'https://errors.angularjs.org/1.9.2-local+sha.4af6941da/';
+  var url = 'https://errors.angularjs.org/1.10.4-local+sha.ed73bd9bd/';
   var regex = url.replace('.', '\\.') + '[\\s\\S]*';
   var errRegExp = new RegExp(regex, 'g');
 
@@ -2836,10 +2836,10 @@ function toDebugString(obj, maxDepth) {
 var version = {
   // These placeholder strings will be replaced by grunt's `build` task.
   // They need to be double- or single-quoted.
-  full: '1.9.2-local+sha.4af6941da',
+  full: '1.10.4-local+sha.ed73bd9bd',
   major: 1,
-  minor: 9,
-  dot: 2,
+  minor: 10,
+  dot: 4,
   codeName: 'snapshot'
 };
 
@@ -2991,7 +2991,7 @@ function publishExternalAPI(angular) {
       });
     }
   ])
-  .info({ angularVersion: '1.9.2-local+sha.4af6941da' });
+  .info({ angularVersion: '1.10.4-local+sha.ed73bd9bd' });
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -20128,7 +20128,10 @@ function adjustMatcher(matcher) {
     // The only other type of matcher allowed is a Regexp.
     // Match entire URL / disallow partial matches.
     // Flags are reset (i.e. no global, ignoreCase or multiline)
-    return new RegExp('^' + matcher.source + '$');
+    // The source is wrapped in a non-capturing group so that top-level
+    // alternations (e.g. /a|b/) cannot escape the ^...$ anchors and
+    // partially match a URL (CVE-2026-11998).
+    return new RegExp('^(?:' + matcher.source + ')$');
   } else {
     throw $sceMinErr('imatcher',
         'Matchers may only be "self", string patterns or RegExp objects');

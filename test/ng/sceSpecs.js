@@ -365,6 +365,15 @@ describe('SCE', function() {
       it('should should match * and **', function() {
         expect(adjustMatcher('*://*.example.com/**').exec('http://www.example.com/path')).not.toBeNull();
       });
+
+      // CVE-2026-11998: top-level alternations must not escape the ^...$ anchors
+      it('should anchor the entire regex when the source contains alternations', function() {
+        var matcher = adjustMatcher(/https:\/\/a\.com|https:\/\/b\.com/);
+        expect(matcher.exec('https://a.com')).not.toBeNull();
+        expect(matcher.exec('https://b.com')).not.toBeNull();
+        expect(matcher.exec('https://a.com.evil.net')).toBeNull();
+        expect(matcher.exec('evil://x/https://b.com')).toBeNull();
+      });
     });
 
     describe('regex matcher', function() {

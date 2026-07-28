@@ -3,9 +3,9 @@
 [![npm version](https://img.shields.io/npm/v/@brickhouse-tech/angular-lts?logo=npm)](https://www.npmjs.com/package/@brickhouse-tech/angular-lts)
 [![npm downloads](https://img.shields.io/npm/dm/@brickhouse-tech/angular-lts)](https://www.npmjs.com/package/@brickhouse-tech/angular-lts)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![CVEs Patched](https://img.shields.io/badge/CVEs%20Patched-11-green)](https://github.com/brickhouse-tech/angular.js/blob/master/SECURITY.md)
+[![CVEs Patched](https://img.shields.io/badge/CVEs%20Patched-12-green)](https://github.com/brickhouse-tech/angular.js/blob/master/SECURITY.md)
 
-> **Production-ready security patches for AngularJS 1.x** — All 11 known CVEs patched. Zero code changes required. Open source alternative to $15K–$50K/year commercial support.
+> **Production-ready security patches for AngularJS 1.x** — All 12 known CVEs patched. Zero code changes required. Open source alternative to $15K–$50K/year commercial support.
 
 **[Try the Live Demo →](https://brickhouse-tech.github.io/angular-lts-demo/)**
 
@@ -32,7 +32,7 @@ Most enterprises face three bad options:
 
 **@brickhouse-tech/angular-lts** is a community-maintained fork that patches all known security vulnerabilities in AngularJS 1.x.
 
-✅ **All 11 CVEs patched** — 2 HIGH, 9 MEDIUM severity vulnerabilities fixed  
+✅ **All 12 CVEs patched** — 3 HIGH, 9 MEDIUM severity vulnerabilities fixed  
 ✅ **Drop-in replacement** — Same API, same behavior, zero code changes  
 ✅ **MIT licensed** — Free and open source, forever  
 ✅ **Actively maintained** — CI/CD, npm provenance, GitHub security advisories  
@@ -57,6 +57,7 @@ Most enterprises face three bad options:
 | 9 | [SNYK-JS-ANGULAR-2772735](https://security.snyk.io/vuln/SNYK-JS-ANGULAR-2772735) | Medium | 5.3 | ReDoS DATE_FORMATS | ✅ Fixed in 1.8.4+ |
 | 10 | [CVE-2022-25869](https://nvd.nist.gov/vuln/detail/CVE-2022-25869) | Medium | 6.1 | $sanitize bypass style (IE/Edge) | ✅ Fixed in 1.8.4+ |
 | 11 | [CVE-2022-25844](https://nvd.nist.gov/vuln/detail/CVE-2022-25844) / [CVE-2020-7676](https://nvd.nist.gov/vuln/detail/CVE-2020-7676) / [CVE-2020-7212](https://nvd.nist.gov/vuln/detail/CVE-2020-7212) | High+Medium | 7.5 | ReDoS + XSS + Proto Pollution | ✅ Fixed in 1.8.4+ |
+| 12 | [CVE-2026-11998](https://nvd.nist.gov/vuln/detail/CVE-2026-11998) | **High** | 7.6 | SCE resource URL policy bypass (XSS) | ✅ Fixed in 1.10.3+ |
 
 **All patches tested and verified.** Full details in [SECURITY.md](SECURITY.md).
 
@@ -99,7 +100,7 @@ HeroDevs offers commercial Extended Support for AngularJS (NES). It's a solid op
 | Feature | @brickhouse-tech/angular-lts | HeroDevs NES |
 |---------|------------------------------|--------------|
 | **Price** | **Free (MIT)** | **$15,000–$50,000+/year** |
-| **Security patches** | ✅ All 11 CVEs patched | ✅ All known CVEs patched |
+| **Security patches** | ✅ All 12 CVEs patched | ✅ All known CVEs patched |
 | **Drop-in replacement** | ✅ Zero code changes | ✅ Zero code changes |
 | **Open source** | ✅ MIT license, public repo | ❌ Proprietary, closed source |
 | **npm package** | ✅ Public npm | ✅ Private npm registry |
